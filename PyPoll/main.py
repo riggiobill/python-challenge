@@ -23,3 +23,24 @@
 
 import os
 import csv
+
+#Specify the file path for the resource
+poll_csv = os.path.join("Resources","election_data.csv")
+
+#Specify the file path for the output
+
+
+
+with open(poll_csv) as csvfile:
+    csvreader = csv.reader(csvfile)
+
+    for row in csvreader:
+        print (row)
+
+
+
+
+#list of needed variables :
+#
+# TotalVotes amount, Candidates{} dictionary, with CandName : CandVotes, CandidateAmount for easy looping, HighestAmount & YoureWinner for final results
+#
