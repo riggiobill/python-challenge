@@ -59,14 +59,43 @@ with open(poll_csv) as csvfile:
             NumofCandidates += 1
             Candidates.update({Candidate:0})
             Candidates[Candidate]+=1
-     
-    print("Total Votes:")
-    print(TotalVotes)
-
     
-    #     the loop needs to keep track of volume of overall votes and amount of votes for each candidate. Then at the end of the looping it can determine:
-#   A. Who got how many votes each
-#   B. What those percentages were, and
-#   C. Who won the popular vote
-# 
-# Last: winner of the election based on popular vote, from vote count above
+
+    print("Election Results")                   ## Begin output of printing info
+    print("-------------------------")
+    print("Total Votes:" + str(TotalVotes))     ## Report total votes
+    print("-------------------------")
+    
+
+    WhosWinner = 0                              #These set empty variables and easy conditions to surpass for the vote count
+    YoureWinner = " "
+    for cand in Candidates:
+        percent = Candidates[cand] / TotalVotes
+        percent_format = "{:.2%}".format(percent)
+        print(cand + ": " + str(percent_format) + " (" + str(Candidates[cand]) + ")")
+        if (Candidates[cand] > WhosWinner):
+            WhosWinner = Candidates[cand]
+            YoureWinner = cand
+
+       
+    print("-------------------------")
+    print("Winner: " + YoureWinner)
+    print("-------------------------")
+   
+
+
+ ## Last of all, the code creates and then writes to a text file.                                   
+output_txt = open("output.txt", "w")
+output_txt.write("Election Results\n")
+output_txt.write("-------------------------\n")
+output_txt.write("Total Votes:" + str(TotalVotes)+" \n")
+output_txt.write("-------------------------\n")
+for cand in Candidates:
+        percent = Candidates[cand] / TotalVotes
+        percent_format = "{:.2%}".format(percent)
+        output_txt.write(cand + ": " + str(percent_format) + " (" + str(Candidates[cand]) + ")\n")
+
+output_txt.write("-------------------------\n")
+output_txt.write("Winner: " + YoureWinner +"\n")
+output_txt.write("-------------------------\n")
+output_txt.close()
