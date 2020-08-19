@@ -1,32 +1,6 @@
-#2 columns, date and profit/loss
-
-#produce:
-#total number of months in the dataset
-    #set month, if month is different increment, if month is different and blank increment and end
-#net total Profits/Losses
-    #add running total of all profit/loss cells as loop goes on
-#average of the changes in profits/losses
-    #create a list of each amount of change between profit/loss cells
-    #run the sum of all that list, divided by the length of all that list for the average
-#greatest increase in profits in date and amount
-    #track the greatest profit/loss change and check it for an update on each cell of the list
-#greatest decrease in loss in date and amount
-    #track the lowest profit/loss change and check it for an update on each cell of the list
-
-
-
-#set variables
-#if cell = same, increment and continue
-#if cell = different
-    #if cell = blank
-        #commit and end
-    #else (if not blank)
-        #commit and switch and reset monthlys while incrementing others
-
-
-#
-#import and set up
-#
+##############################################
+##  Main.py - PyBank project - Bill Riggio  ##
+##############################################
 
 import os
 import csv
@@ -114,7 +88,15 @@ with open(bank_csv) as csvfile:
     print("Greatest Decrease in Profits: " + str(LL_date) + " ($" + str(lowest_loss) + ")")
 
 
-    
+    output_txt = open("output.txt", "w")
+    output_txt.write("Financial Analysis\n")
+    output_txt.write("-------------------------\n")
+    output_txt.write("Total Months: " + str(NumofMonths) + " \n")
+    output_txt.write("Total: $" + str(TotalPL) + "\n")
+    output_txt.write("Average Change: $" + str(average_format) + "\n")
+    output_txt.write("Greatest Increase in Profits: " + str(GP_date) + " ($" + str(greatest_profit) + ")\n")
+    output_txt.write("Greatest Decrease in Profits: " + str(LL_date) + " ($" + str(lowest_loss) + ")\n")
+    output_txt.close()
     
 
 
